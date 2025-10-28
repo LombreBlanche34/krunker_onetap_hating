@@ -6,6 +6,20 @@ A lightweight userscript that tracks how many times you die to one-tap weapons i
 
 ---
 
+## 📦 Available Scripts
+
+### **1. `onetap_hating.js` (Basic Version)**
+- **Stats reset** when changing lobbies.
+- **No data persistence** (counts only for the current lobby, e.g., `FRA:xxx` and not `FRA:xyz`).
+- **Best for:** Quick testing or if you don't need saved stats.
+
+### **2. `onetap_hating_persistent.js` (Persistent Version)**
+- **Saves all data** in `localStorage` (no reset on lobby change, e.g., 5 deaths in `FRA:xxx` = 5 deaths in `FRA:xyz`).
+- **Tracks stats across multiple lobbies**.
+- **Best for:** Long-term tracking of one-tap deaths.
+
+---
+
 ## 🎯 What does it do?
 
 Ever wonder how often you get "skill-checked" by snipers? This script counts:
