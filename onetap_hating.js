@@ -1,10 +1,45 @@
+const defaults = {
+    lombre_onetap_hating_onetap_class: '["icon_1.png", "icon_14.png", "icon_29.png"]',
+    lombre_onetap_hating_you_text_color: '["rgb(255, 255, 255)", "#fff"]',
+    lombre_onetap_hating_you_text_username: "You",
+    lombre_onetap_hating_status: true
+}
+
+// Initialize localStorage if values don't exist
+Object.keys(defaults).forEach(key => {
+    if (localStorage.getItem(key) === null) {
+        localStorage.setItem(key, defaults[key]);
+        console.log(`[LombreScripts] [onetap_hating.js] ${key} created with default value: ${defaults[key]}`);
+    }
+});
+
+// Check if script is enabled
+const scriptStatus = localStorage.getItem('lombre_onetap_hating_status');
+const isEnabled = scriptStatus === 'true' || scriptStatus === true;
+
+
+if (!isEnabled) {
+    console.log("[LombreScripts] [onetap_hating.js] Script is disabled (lombre_onetap_hating_status = false)");
+    return; // Exit script
+}
+
+console.log("[LombreScripts] [onetap_hating.js] Script is enabled");
+
+// Load configuration
+const config = {
+    OTWEAPON: JSON.parse(localStorage.getItem('lombre_onetap_hating_onetap_class')),
+    YOUCOLOR: JSON.parse(localStorage.getItem('lombre_onetap_hating_you_text_color')),
+    YOUTEXT: localStorage.getItem("lombre_onetap_hating_you_text_username")
+};
+
+
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function () {
     // Counters
     let onetapDeaths = 0;
     let totalDeaths = 0;
 
-    const onetapWeapons = ['icon_1.png', 'icon_14.png', 'icon_29.png']; // Sniper, Crossbow, Infiltrator
+    const onetapWeapons = config.OTWEAPON; // Sniper, Crossbow, Infiltrator
 
     // Function to display the counters
     function updateCounters() {
@@ -43,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Check if "You" is present (victim)
         const youSpan = Array.from(chatMsg.querySelectorAll('span')).find(
-            span => span.textContent === 'You' && span.style.color === 'rgb(255, 255, 255)'
+            span => span.textContent === config.YOUTEXT && config.YOUCOLOR.includes(span.style.color)
         );
         if (!youSpan) return {
             isDeath: false,
