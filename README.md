@@ -8,7 +8,7 @@ A lightweight userscript that tracks how many times you die to one-tap weapons i
 
 ## 📦 Available Scripts
 
-### **1. `onetap_hating.js` (Basic Version, now compatible with https://github.com/LombreBlanche34/krunker_scripts_settings)**
+### **1. `onetap_hating.js` (Basic Version)**
 - **Stats reset** when changing lobbies.
 - **No data persistence** (counts only for the current lobby, e.g., `FRA:xxx` and not `FRA:xyz`).
 - **Best for:** Quick testing or if you don't need saved stats.
